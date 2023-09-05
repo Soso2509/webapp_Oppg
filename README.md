@@ -1,2 +1,2 @@
-# Her ligger mindre oppgaver som har blitt jobbet med i forelesning
-## Disse er ofte gjort i codesandbox
+# Her ligger oppgaver gitt i enten forelesning eller på fullstack
+Det er også kodesnutter fra forelesning
