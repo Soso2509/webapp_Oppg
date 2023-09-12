@@ -21,10 +21,10 @@ const getRandomId = () => {
 
 // TODO: Oppgave 1 - Not implemented
 const faker: Faker = {
-  id,
-  answer,
-  score,
-  category,
+  id: () => getRandomId(),
+  answer: () => getRandomItem<string>(fakeAnswers),
+  score: () => getRandomItem<number>(fakeScores),
+  category: () => getRandomItem<string>(fakeCategories),
 }
 
 // TODO: Oppgave 1 - Not implemented
@@ -33,6 +33,12 @@ const createResponses: CreateResponses = ({
   count,
   faker,
 }) => {
+  const responses = new Map<string, Response>();
+  for (let i = 0; i <= count; i++) {
+
+    responses.set(getRandomId(), faker)
+  }
+
   return responses
 }
 
