@@ -1,4 +1,4 @@
-import { CreateResponses, Faker } from "./types"
+import type { CreateResponses, Faker, Response } from "./types"
 
 const fakeAnswers: string[] = [
   "GlitterGlo Lipstick",
@@ -15,30 +15,35 @@ const getRandomItem = <T>(items: T[]) => {
   return items[Math.floor(Math.random() * items.length)]
 }
 
-const getRandomId = () => {
+export const getRandomId = () => {
   return Math.random().toString(36).slice(2)
 }
 
-// TODO: Oppgave 1 - Not implemented
 const faker: Faker = {
-  id: () => getRandomId(),
+  id: getRandomId,
   answer: () => getRandomItem<string>(fakeAnswers),
   score: () => getRandomItem<number>(fakeScores),
   category: () => getRandomItem<string>(fakeCategories),
 }
 
 // TODO: Oppgave 1 - Not implemented
-const createResponses: CreateResponses = ({
+ const createResponses: CreateResponses = ({
   existingResponses,
   count,
   faker,
 }) => {
-  const responses = new Map<string, Response>();
-  for (let i = 0; i <= count; i++) {
-
-    responses.set(getRandomId(), faker)
+  const responses = new Map(existingResponses);
+  //if(responses.size === 0 && count === 0)
+  for (let i = 0; i < count; i++) {
+    const response = {
+      id: faker.id(),
+      questionId:'1',
+      score: faker.score(),
+      category:faker.category(),
+      answer: faker.answer()
+    };
+    responses.set(`response-${i}`, response)
   }
-
   return responses
 }
 
